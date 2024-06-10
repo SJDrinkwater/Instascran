@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: whitesmoke;
+            color: black;
+            font-family: 'CustomFontText', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            border: 2px solid grey; 
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+        h1 {
+            font-family: 'CustomFontTitle', Arial, sans-serif;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            text-align: left;
+        }
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        form input[type="radio"] {
+            display: none; 
+        }
+        form img {
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%;
+            cursor: pointer; 
+            transition: border-color 0.3s ease; 
+            object-fit: cover; 
+        }
+        form img.selected {
+            border-color: grey; 
+        }
+        form .image-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        form .image-container label {
+            flex-basis: 23%;
+        }
+        form input[type="submit"] {
+            background-color: whitesmoke;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 100%;
+        }
+        form input[type="submit"]:hover {
+            background-color: white;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            font-size: 1.2em;
+        }
+        .password-strength {
+            margin-top: 5px;
+            font-size: 0.8em;
+        }
+        .password-requirements {
+            margin-top: 5px;
+            font-size: 0.8em;
+            color: green;
+        }
+        .column {
+            flex-basis: 48%; 
+        }
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+        }
+        form input[type="text"]:focus,
+        form input[type="password"]:focus {
+            outline: none; 
+            border-color: #555; 
+        }
+        form .image-container img.selected {
+            box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.7); 
+
+        }
+        .password-checklist {
+            margin-top: 5px;
+            font-size: 0.8em;
+        }
+
+        .password-checklist li {
+            list-style-type: none;
+        }
+
+        .password-checklist .checked {
+            color: green;
+        }
+
+        .password-checklist .unchecked {
+            color: red;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-link a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>User Registration</h1>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var queryParams = new URLSearchParams(window.location.search);
+            var usernameExists = queryParams.get('username_exists');
+            if (usernameExists === 'true') {
+                alert("Username already exists!");
+                setTimeout(function() {
+                    window.location.href = 'recipes.html';
+                }, 2000); 
+            }
+        });
+    </script>
+    <form action="api/users/account_creation.php" method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <div class="password-container">
+            <input type="password" id="password" name="password" required>
+            <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility('password')"></i>
+        </div>
+        <span id="password_strength" class="password-strength"></span><br>
+        <span id="password_requirements" class="password-requirements"></span><br>
+        <ul class="password-checklist">
+            <li id="length" class="unchecked">At least 8 characters</li>
+            <li id="uppercase" class="unchecked">At least one uppercase letter</li>
+            <li id="lowercase" class="unchecked">At least one lowercase letter</li>
+            <li id="number" class="unchecked">At least one number</li>
+            <li id="symbol" class="unchecked">At least one symbol</li>
+        </ul>
+        <br>
+
+        <label for="confirm_password">Confirm Password:</label><br>
+        <div class="password-container">
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility('confirm_password')"></i>
+        </div><br><br>
+
+        <label for="user_icon">Select User Icon:</label><br>
+        <div class="image-container" id="image-container">
+      
+        </div>
+           
+        <script type="text/javascript" src="JS_Users/load_images.js"></script>
+        
+        <input type="submit" value="Create Account">
+        <div class="login-link">
+            <a href="login.html">Already have an account? Login here.</a>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="JS_Users/creation_parameters.js"></script>
+
+</body>
+</html>

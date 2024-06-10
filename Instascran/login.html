@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/styles.css">
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: whitesmoke;
+            color: black;
+            font-family: 'CustomFontText', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            background-color: white;
+            border: 2px solid grey;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+        h2 {
+            font-family: 'CustomFontTitle', Arial, sans-serif;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        input[type="submit"] {
+            background-color: whitesmoke;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .register-link a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form action="api/users/login_process.php" method="POST">
+        <h2>Login</h2>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+        <div class="register-link">
+            <a href="register.html">Don't have an account? Register here.</a>
+        </div>
+    </form>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error') && urlParams.get('error') === '1') {
+
+            alert("Email or password is incorrect. Please try again.");
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .recipe-container {
+            -moz-column-width: 300px;
+            -webkit-column-width: 300px;
+            column-width: 300px;
+            -moz-column-gap: 10px;
+            -webkit-column-gap: 10px;
+            column-gap: 10px;
+            padding: 20px 10px 10px; 
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            padding-left: 250px; 
+        }
+        .delete-icon i {
+            color: #ff0000; /* Red color for the bin icon */
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <h1 class="login-title">Instascran</h1> 
+    <ul>
+        <li><a href="all_recipes.html" class="filter-button active" >Home</a></li>
+        <li><a href="breakfast_recipes.html" class="filter-button" data-filter="breakfast">Breakfast</a></li>
+        <li><a href="lunch_recipes.html" class="filter-button active" data-filter="all">Lunch</a></li>
+        <li><a href="dinner_recipes.html" class="filter-button" data-filter="breakfast">Dinner</a></li>
+        <li><a href="my_recipes.html" class="filter-button" data-filter="breakfast">My Recipes</a></li>
+        <br>
+        <li><a href="add_recipe.html"><i class="fas fa-plus-circle"></i> Add Recipe</a></li>
+        <br><br>
+    </ul>
+    <ul class="logout-link">
+        <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</div>
+<div class="main-content">
+    <div class="recipe-container" id="recipeContainer"></div>
+</div>
+<div id="loadingIcon" style="display: none;">
+    <i class="fas fa-spinner fa-spin"></i>
+</div> 
+<script type="text/javascript" src="JS_Recipes/recipe_card.js"></script>
+
+<script>
+    fetchRecipes('../api/Breakfast/breakfast_recipes.php');
+</script>
+    
+</body>
+</html>

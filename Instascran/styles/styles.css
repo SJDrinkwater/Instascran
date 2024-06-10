@@ -1,0 +1,192 @@
+body {
+    font-family: 'CustomFontText', Arial, sans-serif;           
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.navbar {
+    color: black;
+    padding: 20px;
+    background-color: whitesmoke;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    position: fixed; /* Make the navbar fixed */
+    height: 100vh; /* Set the height of the navbar to fill the viewport */
+    overflow-y: auto; /* Enable vertical scrolling for the navbar */
+    border-right: 1px solid #ccc; /* Add a border to the right side */
+    font-family: 'CustomFontTitle';           
+}
+
+.logout-link {
+    margin-top: auto; /* Push the logout link to the bottom */
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    margin-bottom: 10px;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: black;
+}
+
+.recipe-card {
+    display: inline-block;
+    margin-bottom: 10px; /* Space between items vertically */
+    break-inside: avoid; /* Prevents the item from being split into two columns */
+    width: 100%; /* The width is now 100% of the column width */
+    border: 1px solid #ddd; /* Adds a light grey outline */
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.recipe-name {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.recipe-kcal {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.add-recipe-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add-recipe-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.add-recipe-button a:hover {
+    background-color: #000;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: whitesmoke;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.comment-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment-user {
+    font-weight: bold;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: #999;
+}
+
+.comment-text {
+    margin-top: 5px;
+}
+
+.add-comment-form {
+    margin-top: 20px;
+}
+
+.add-comment-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.add-comment-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-comment-form button:hover {
+    background-color: #000;
+}
+
+/* Added CSS for rating */
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.rating .fa-star {
+    color: #ccc; 
+    font-size: 18px;
+}
+
+.rating .fa-star.filled {
+    color: #FFD700; 
+}
+
+@font-face {
+    font-family: 'CustomFontTitle';
+    src: url('../assets/fonts/Overthink.ttf') format('truetype');
+}
+
+.login-title {
+    font-family: 'CustomFontTitle';
+    font-weight: normal; 
+    font-size: 40px; 
+    margin-bottom: 20px;
+}
+
+@font-face {
+    font-family: 'CustomFontText';
+    src: url('../assets/fonts/HisHeartisMine.ttf') format('truetype');
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe</title>
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .added-products {
+            margin-top: 20px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            margin-left: 10px;
+        }
+
+        .measurement {
+            margin-left: 5px;
+            color: #999;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: black;
+        }
+
+        #ingredient_search {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        #ingredient_container_wrapper {
+            height: 200px; 
+            overflow-y: auto; 
+        }
+
+        form {
+            width: 70%; 
+            max-width: 600px; 
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block; 
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        select {
+            appearance: none; 
+            background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px; 
+            padding-right: 30px; 
+        }
+
+        textarea {
+            resize: vertical; 
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #000;
+        }
+
+        #ingredient_container_wrapper {
+            height: 200px; 
+            overflow-y: auto; 
+        }
+
+        #ingredient_container {
+            padding-bottom: 20px;
+        }
+
+        #ingredient_search {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+        }
+
+        .ingredient {
+            margin-bottom: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .ingredient:hover {
+            background-color: #f0f0f0;
+        }
+
+        .add-symbol {
+            margin-left: 10px;
+        }
+
+        .quantity-input {
+            width: 60px;
+            margin-left: 10px;
+        }
+
+        .measurement {
+            margin-left: 5px;
+            color: #999;
+        }
+
+        #added_products {
+            margin-top: 20px;
+        }
+
+        #added_products div {
+            margin-bottom: 10px;
+        }
+
+        #added_products input[type="number"] {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<div class="navbar">
+    <h1 class="login-title">Instascran</h1> 
+    <ul>
+        <li><a href="all_recipes.html"></i> Go Back</a></li>
+        <br><br>
+    </ul>
+
+    <ul class="logout-link">
+        <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</div>
+
+<div style="padding-left: 250px; width: 600px;"> 
+    <form action="../api/AddRecipe/add_recipe.php" method="post">
+        <label for="recipe_name">Recipe Name:</label><br>
+        <input type="text" id="recipe_name" name="recipe_name" required><br><br>
+
+        <label for="recipe_kcal">Kcal:</label><br>
+        <input type="number" id="recipe_kcal" name="recipe_kcal" required><br><br>
+
+        <label for="recipe_img">Recipe Image URL:</label><br>
+        <input type="text" id="recipe_img" name="recipe_img"><br><br>
+
+        <label for="meal_type">Meal Type:</label><br>
+        <select id="meal_type" name="meal_type" required>
+            <option value="">Select Meal Type</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+        </select><br><br>
+
+        <label>Ingredients:</label><br>
+        <input type="text" id="ingredient_search" name="ingredient_search" placeholder="Search for ingredients">
+        <div id="ingredient_container_wrapper">
+            <div id="ingredient_container">
+                <div id="ingredient_list">
+                    <scripttype="text/javascript" src="JS_Recipes/fetch_ingredients.js"></script>
+                </div>
+            </div>
+        </div><br>
+
+        <div id="add_product_link" style="margin-top: 10px; text-align: center;">
+            <a href="add_product.html" id="add_product_btn">Can't find your product? Add it here.</a>
+        </div>
+        <div id="selected_ingredients"></div>
+
+ 
+        <div id="added_products" class="added-products"></div>
+
+        <label for="instructions">Instructions:</label><br>
+        <textarea id="instructions" name="instructions" rows="4" required></textarea><br><br>
+
+        <input type="submit" value="Add Recipe">
+    </form>
+</div>
+<div id="recipe_preview" style="float: right; width: calc(30% - 20px); padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+    <h2>Recipe Preview</h2>
+    <div id="preview_recipe_name"></div>
+    <div id="preview_recipe_img"></div>
+    <div id="preview_recipe_kcal"></div>
+    <div id="preview_meal_type"></div>
+    <div id="preview_instructions"></div>
+    <div id="preview_ingredients"></div>
+</div>
+<script type="text/javascript" src="JS_Recipes/add_recipe.js"></script>
+
+
+</body>
+</html>
